@@ -5,15 +5,16 @@ function List(props) {
     const times = props.times;
     const items = times.map((time, index) => {
         return (
-            <ListItem
+            <ListItem key={index}
                 index={index}
                 time={time}
                 removeTime={props.removeTime}
             />
         )
     });
+
     return (
-        <ol>{items}</ol>
+        <ol className="background">{items}</ol>
     )
 }
 

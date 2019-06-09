@@ -1,9 +1,10 @@
 import React from 'react';
-import List from './components/List'
 import uuid from 'uuid'
 import './App.css';
 
+import MoveList from './components/MoveList'
 import Timer from './components/Timer'
+import List from './components/List'
 
 class App extends React.Component {
     constructor(props) {
@@ -99,11 +100,15 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Timer 
-                    minutes={this.state.minutes}
-                    seconds={this.state.seconds}
-                    miliseconds={this.state.miliseconds}
-                />
+                <div className="main">
+                    <h1>Cube Timer</h1>
+                    <MoveList />
+                    <Timer 
+                        minutes={this.state.minutes}
+                        seconds={this.state.seconds}
+                        miliseconds={this.state.miliseconds}
+                    />
+                </div>
                 <List 
                     times={this.state.times}
                     removeTime={this.removeTime}
