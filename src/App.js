@@ -10,10 +10,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.tick = this.tick.bind(this);
-        this.startTimer = this.startTimer.bind(this);
-        this.stopTimer = this.stopTimer.bind(this);
         this.removeTime = this.removeTime.bind(this);
         this.state = {
+            moveList: '',
             times: [],
             miliseconds: 0,
             seconds: 0,
@@ -23,6 +22,7 @@ class App extends React.Component {
 
     componentWillMount() {
         document.addEventListener('keydown', (e) => this.handleSpace(e));
+        this.newList();
     }
 
     componentWillUnmount() {
@@ -85,6 +85,7 @@ class App extends React.Component {
         clearInterval(this.timer);
         this.timer = null;
         this.addTime();
+        this.newList();
     }
 
     handleSpace(e) {
@@ -97,12 +98,37 @@ class App extends React.Component {
         }
     }
 
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    getMove() {
+        const directions = ['U', 'D', 'L', 'R', 'F', 'B', 'U\'', 'D\'', 'L\'', 'R\'', 'F\'', 'B\''];
+        if(this.getRandomInt(10) === 0) {
+            return '2' + directions[this.getRandomInt(12)];
+        }
+        return directions[this.getRandomInt(12)];
+    }
+
+    newList() {
+        let newList = '';
+        for(let i=0; i < 15; i++) {
+            newList += this.getMove() + ' ';
+        }
+        this.setState({
+            moveList: newList
+        });
+    }
+
     render() {
         return (
             <div className="App">
                 <div className="main">
                     <h1>Cube Timer</h1>
-                    <MoveList />
+                    <MoveList 
+                        moveList={this.state.moveList}
+                    />
                     <Timer 
                         minutes={this.state.minutes}
                         seconds={this.state.seconds}
