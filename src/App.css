@@ -23,13 +23,9 @@
 
 .list {
     height: 70vh;
+    overflow: auto;
 }
 
 .stats {
-    /* display:grid;
-    grid-template-columns: 50% 50%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%; */
     height: 27vh;
 }

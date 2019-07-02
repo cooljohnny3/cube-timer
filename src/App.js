@@ -38,7 +38,7 @@ class App extends React.Component {
                         seconds: this.state.seconds,
                         miliseconds: this.state.miliseconds
                     }
-        this.setState({times: times.concat([time])})
+        this.setState({times: times.concat([time])});
     }
 
     removeTime(id) {
@@ -98,7 +98,6 @@ class App extends React.Component {
             }
         }
     }
-
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));

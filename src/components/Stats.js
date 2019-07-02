@@ -18,8 +18,23 @@ function getAverage(times){
     return ' ' + minutes + ':' + seconds + '.' + sum;
 }
 
-function getBest(times) {
+function getBest(times) {   // BIG ISSUE called on every tick whicvh slows down app
+    let bestTime;
+    let sum = 0; // milliseconds
+    let best = 0;
+    for(let i in times) {
+        sum = 0;
+        sum += times[i].minutes * 60000;
+        sum += times[i].seconds * 1000;
+        sum += times[i].miliseconds;
 
+        if(best === 0 || sum < best) {
+            console.log("new Best " + times[i].minutes + ' ' + times[i].seconds + ' ' + times[i].miliseconds);
+            best = sum;
+            bestTime = times[i];
+        }
+    }
+    return ' ' + bestTime.minutes + ':' + bestTime.seconds + '.' + bestTime.miliseconds;
 }
 
 function Stats(props) {
@@ -29,12 +44,15 @@ function Stats(props) {
                 <tbody>
                     <tr>
                         <td>Average: {props.times.length>=1 ? getAverage(props.times) : " --:--.--"}</td>
+                        <td>Best: {props.times.length>=1 ? getBest(props.times) : " --:--.--"}</td>
                     </tr>
                     <tr>
-                        <td>Average 5: {props.times.length>=5 ? getAverage(props.times.slice(props.times.length - 5)) : " --:--.--"}</td> 
+                        <td>Average 5: {props.times.length>=5 ? getAverage(props.times.slice(props.times.length - 5)) : " --:--.--"}</td>
+                        <td>Best 5: {props.times.length>=5 ? getBest(props.times) : " --:--.--"}</td>
                     </tr>
                     <tr>
                         <td>Average 10: {props.times.length>=10 ? getAverage(props.times.slice(props.times.length - 10)) : " --:--.--"}</td>
+                        <td>Best 10: {props.times.length>=10 ? getBest(props.times) : " --:--.--"}</td>
                     </tr>
                 </tbody>
             </table>
