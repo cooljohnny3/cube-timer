@@ -1,18 +1,35 @@
 .App {
   height: 100vh;
-  text-align: center; 
   background-color: deepskyblue;
-  display: grid;
-  grid-template-columns: 70% 30%;
+}
+
+.container {
+    text-align: center; 
+    display: grid;
+    grid-template-columns: 70% 30%;
 }
 
 .main {
     margin: auto;
     min-width: 300px;
+    grid-row: span 2
 }
 
 .background {
     margin: 5px;
     border: 1px solid black;
     background-color: white;
+}
+
+.list {
+    height: 70vh;
+}
+
+.stats {
+    /* display:grid;
+    grid-template-columns: 50% 50%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%; */
+    height: 27vh;
 }

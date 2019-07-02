@@ -5,6 +5,7 @@ import './App.css';
 import MoveList from './components/MoveList'
 import Timer from './components/Timer'
 import List from './components/List'
+import Stats from './components/Stats'
 
 class App extends React.Component {
     constructor(props) {
@@ -124,21 +125,24 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <div className="main">
-                    <h1>Cube Timer</h1>
-                    <MoveList 
-                        moveList={this.state.moveList}
+                <div className="container">
+                    <div className="main">
+                        <h1>Cube Timer</h1>
+                        <MoveList 
+                            moveList={this.state.moveList}
+                        />
+                        <Timer 
+                            minutes={this.state.minutes}
+                            seconds={this.state.seconds}
+                            miliseconds={this.state.miliseconds}
+                        />
+                    </div>
+                    <List
+                        times={this.state.times}
+                        removeTime={this.removeTime}
                     />
-                    <Timer 
-                        minutes={this.state.minutes}
-                        seconds={this.state.seconds}
-                        miliseconds={this.state.miliseconds}
-                    />
+                    <Stats times={this.state.times}/>
                 </div>
-                <List 
-                    times={this.state.times}
-                    removeTime={this.removeTime}
-                />
             </div>
         );
     }

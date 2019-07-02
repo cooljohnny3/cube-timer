@@ -14,7 +14,7 @@ function List(props) {
     });
 
     return (
-        <ol className="background">{items}</ol>
+        <ol className="background list">{items}</ol>
     )
 }
 
